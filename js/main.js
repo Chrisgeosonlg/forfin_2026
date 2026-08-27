@@ -12,6 +12,7 @@
   const preloaderBar = $("#preloaderBar");
   const preloaderText = $("#preloaderText");
   const pageImages = $$("img");
+  const preloaderSeen = document.documentElement.classList.contains("has-preloaded");
   let settledImages = 0;
   let preloaderFinished = false;
 
@@ -25,6 +26,7 @@
   const finishPreloader = () => {
     if (preloaderFinished) return;
     preloaderFinished = true;
+    try { sessionStorage.setItem("forfin-preloaded", "1"); } catch (e) {}
     if (preloaderBar) preloaderBar.style.width = "100%";
     if (preloaderText) preloaderText.textContent = "100%";
     window.setTimeout(() => {
@@ -34,7 +36,9 @@
     }, reduceMotion ? 0 : 250);
   };
 
-  if (!pageImages.length) {
+  if (preloaderSeen) {
+    preloader?.remove();
+  } else if (!pageImages.length) {
     finishPreloader();
   } else {
     const imageSettled = () => {

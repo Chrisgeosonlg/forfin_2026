@@ -4,6 +4,7 @@
 =================================================================== */
 /* ---------- image preloader ---------- */
 html.is-loading,html.is-loading body{overflow:hidden}
+.has-preloaded .site-preloader{display:none}
 .site-preloader{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#12377c 0,#071b4d 48%,#04112f 100%);opacity:1;visibility:visible;transition:opacity .45s ease,visibility .45s ease}
 .site-preloader.is-ready{opacity:0;visibility:hidden;pointer-events:none}
 .site-preloader__inner{width:min(260px,70vw);display:flex;flex-direction:column;align-items:center}
@@ -112,10 +113,14 @@ h1,h2,h3,h4,h5,.eyebrow,.btn,.nav__links a,.stat__n,.cd__n{font-family:"Montserr
 .strip{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,.06);padding:26px 0}
 .strip__inner{display:flex;align-items:center;gap:34px;flex-wrap:wrap;justify-content:center}
 .strip__label{font-family:"Montserrat";font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:rgba(217,222,232,.5)}
-.strip__logos{display:flex;align-items:center;gap:34px;flex-wrap:wrap;justify-content:center}
-.strip__logos img{height:24px;width:auto;opacity:.92;filter:brightness(0) invert(1);transition:.25s}
-.strip__logos img:hover{opacity:1}
-.strip__logos .strip__tile{height:34px;filter:none;border-radius:7px}
+.strip__logos{display:grid;grid-template-columns:repeat(7,110px);gap:12px;justify-content:center}
+.strip__logo{width:110px;height:52px;display:flex;align-items:center;justify-content:center;padding:9px 12px;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:9px;background:#fff;transition:.25s}
+.strip__logo:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.strip__logo img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}
+.strip__logo--strategic{grid-column:span 2;width:232px;height:74px;padding:7px 10px;background:#fff;border-color:rgba(255,255,255,.22)}
+.strip__logo--strategic img{object-fit:contain}
+.strip__wordmark{font-family:"Montserrat",sans-serif;font-size:17px;font-weight:800;line-height:1;white-space:nowrap}
+.strip__wordmark--imperva{color:#ec632c;text-transform:lowercase}
 
 /* ---------- about ---------- */
 .about{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
@@ -193,8 +198,8 @@ h1,h2,h3,h4,h5,.eyebrow,.btn,.nav__links a,.stat__n,.cd__n{font-family:"Montserr
 /* ---------- partners ---------- */
 .partner-hero{display:flex;align-items:center;gap:30px;background:radial-gradient(120% 130% at 90% 10%,rgba(18,197,216,.2),transparent 55%),
    linear-gradient(150deg,#0A2563,#061436);color:#fff;border-radius:22px;padding:32px;margin-bottom:24px}
-.partner-hero__plate{flex:none;width:230px;height:108px;background:#171d23;border:1px solid rgba(255,255,255,.12);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden}
-.partner-hero__plate img{width:100%;height:100%;object-fit:cover;display:block}
+.partner-hero__plate{flex:none;width:230px;height:108px;background:#fff;border:1px solid rgba(255,255,255,.12);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:12px;overflow:hidden}
+.partner-hero__plate img{width:100%;height:100%;object-fit:contain;display:block}
 .partner-hero p{color:rgba(231,236,245,.82);font-size:15px;max-width:600px;margin-top:8px}
 .partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .plogo{background:#fff;border:1px solid var(--line);border-radius:16px;height:120px;display:flex;align-items:center;justify-content:center;padding:26px;transition:.25s var(--ease)}
@@ -203,11 +208,7 @@ h1,h2,h3,h4,h5,.eyebrow,.btn,.nav__links a,.stat__n,.cd__n{font-family:"Montserr
 .plogo--tile{padding:0;overflow:hidden;background:#082330}.plogo--tile img{max-height:none;max-width:none;width:100%;height:100%;object-fit:cover;display:block}
 .plogo--wordmark{padding:20px;background:#fff}
 .wm{display:inline-block;white-space:nowrap;font-family:"Montserrat",sans-serif;font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1}
-.wm--datapatrol{color:#253a76}.wm--datapatrol::first-letter{color:#e44b3f}
-.wm--censys{color:#18243d;letter-spacing:-.055em}
-.wm--kaspersky{color:#00a88e;font-weight:700;text-transform:lowercase}
 .wm--imperva{color:#ec632c;text-transform:lowercase;font-weight:700}
-.wm--solarwinds{color:#f05a28;font-size:20px;letter-spacing:.02em}
 .plogo--cta{flex-direction:column;gap:8px;background:var(--navy);color:#fff;font-family:"Montserrat";font-weight:700;font-size:15px;border-color:transparent}
 .plogo--cta .ico{width:18px;height:18px;stroke-width:2.2;color:var(--cyan)}
 .plogo--cta:hover{background:var(--navy-2)}
@@ -352,6 +353,8 @@ h1,h2,h3,h4,h5,.eyebrow,.btn,.nav__links a,.stat__n,.cd__n{font-family:"Montserr
   .partner-hero__plate{width:200px}
 }
 @media (max-width:760px){
+  .strip__inner{gap:20px}
+  .strip__logos{width:100%;grid-template-columns:repeat(7,110px);justify-content:start;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
   .nav__links{position:fixed;inset:0 0 0 auto;width:78%;max-width:320px;flex-direction:column;align-items:flex-start;
     gap:6px;background:#0A2563;padding:96px 28px 28px;transform:translateX(100%);transition:.35s var(--ease);box-shadow:-20px 0 60px rgba(0,0,0,.4)}
   .nav__links.is-open{transform:none}
