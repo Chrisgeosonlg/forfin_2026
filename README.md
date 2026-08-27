@@ -2,7 +2,7 @@
 
 A modern, responsive marketing website for **FORFIN 2026 (Fortifying Finance)** —
 *AI-Driven Cyber Resilience for the Digital Future*.
-20–21 August 2026 (tentative) · White Sands Conference Centre, Dar es Salaam, Tanzania.
+1<sup>st</sup>–2<sup>nd</sup> October 2026 · White Sands Resort & Conference Centre, Dar es Salaam, Tanzania.
 An event by **Computer Centre Tanzania (CCTZ)**.
 
 Built as a dependency-free static site (plain HTML, CSS and vanilla JS) — no build
@@ -43,7 +43,7 @@ forfin-2026-website/
 - **Colours & fonts:** edit the CSS variables at the top of `css/styles.css`
   (`--navy`, `--cyan`, etc.).
 - **Dates / countdown:** the countdown target is in `js/main.js`
-  (`new Date("2026-08-20T09:00:00+03:00")`). Update the date text in `index.html`
+  (`new Date("2026-10-01T09:00:00+03:00")`). Update the date text in `index.html`
   (hero `.chip`, venue, footer) to match.
 - **Agenda:** edit the `.ag-row` items in `index.html` (preview) and `agenda.html` (full).
 - **Sponsors:** drop new logos into `assets/sponsors/` and update the `<img>` tags in
@@ -62,8 +62,7 @@ forfin-2026-website/
   default. The filter uses `data-cat` (keynote / panel / workshop / networking / venue / awards).
 - Speaker cards are placeholders ("To be announced") — swap in photos and names when confirmed.
 - Sponsor logos are the official brand marks supplied; keep their proportions when replacing.
-- Dates are marked **tentative** throughout — search the project for `Tentative` / `20–21 August`
-  to update once confirmed.
+- The confirmed event dates are **1<sup>st</sup>–2<sup>nd</sup> October 2026**.
 - "Defenix" is spelled per the supplied logo.
 
 © 2026 FORFIN · Computer Centre Tanzania.

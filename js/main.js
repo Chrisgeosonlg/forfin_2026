@@ -25,7 +25,7 @@
   );
 
   /* ---------- countdown ---------- */
-  const target = new Date("2026-08-20T09:00:00+03:00").getTime();
+  const target = new Date("2026-10-01T09:00:00+03:00").getTime();
   const cd = {
     d: $("[data-days]"), h: $("[data-hours]"),
     m: $("[data-mins]"), s: $("[data-secs]"),
