@@ -7,55 +7,25 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- image preloader ---------- */
-  const preloader = $("#sitePreloader");
-  const preloaderBar = $("#preloaderBar");
-  const preloaderText = $("#preloaderText");
-  const pageImages = $$("img");
-  const preloaderSeen = document.documentElement.classList.contains("has-preloaded");
-  let settledImages = 0;
-  let preloaderFinished = false;
+  /* ---------- per-image spiral loaders ---------- */
+  $$(".tile img, .plogo img, .strip__logo img, .partner-hero__plate img").forEach(img => {
+    if (img.complete) return;
+    const target = img.closest(".tile, .plogo, .strip__logo, .partner-hero__plate");
+    if (!target) return;
+    const spinner = document.createElement("span");
+    spinner.className = "image-loader";
+    spinner.setAttribute("aria-hidden", "true");
+    target.classList.add("image-load-target", "is-image-loading");
+    target.appendChild(spinner);
 
-  const updatePreloader = () => {
-    const total = pageImages.length || 1;
-    const progress = Math.round((settledImages / total) * 100);
-    if (preloaderBar) preloaderBar.style.width = `${progress}%`;
-    if (preloaderText) preloaderText.textContent = `${progress}%`;
-  };
-
-  const finishPreloader = () => {
-    if (preloaderFinished) return;
-    preloaderFinished = true;
-    try { sessionStorage.setItem("forfin-preloaded", "1"); } catch (e) {}
-    if (preloaderBar) preloaderBar.style.width = "100%";
-    if (preloaderText) preloaderText.textContent = "100%";
-    window.setTimeout(() => {
-      preloader?.classList.add("is-ready");
-      document.documentElement.classList.remove("is-loading");
-      window.setTimeout(() => preloader?.remove(), reduceMotion ? 0 : 500);
-    }, reduceMotion ? 0 : 250);
-  };
-
-  if (preloaderSeen) {
-    preloader?.remove();
-  } else if (!pageImages.length) {
-    finishPreloader();
-  } else {
-    const imageSettled = () => {
-      settledImages += 1;
-      updatePreloader();
-      if (settledImages >= pageImages.length) finishPreloader();
+    const revealImage = () => {
+      target.classList.remove("is-image-loading");
+      spinner.classList.add("is-done");
+      window.setTimeout(() => spinner.remove(), reduceMotion ? 0 : 220);
     };
-    pageImages.forEach(img => {
-      img.loading = "eager";
-      if (img.complete) imageSettled();
-      else {
-        img.addEventListener("load", imageSettled, { once: true });
-        img.addEventListener("error", imageSettled, { once: true });
-      }
-    });
-    updatePreloader();
-  }
+    img.addEventListener("load", revealImage, { once: true });
+    img.addEventListener("error", revealImage, { once: true });
+  });
 
   /* ---------- sticky nav state ---------- */
   const nav = $("#nav");
