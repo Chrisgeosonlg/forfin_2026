@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="is-loading">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +12,14 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<div class="site-preloader" id="sitePreloader" role="status" aria-live="polite" aria-label="Loading website">
+  <div class="site-preloader__inner">
+    <img class="site-preloader__logo" src="assets/forfin-logo-white.png" alt="FORFIN 2026">
+    <div class="site-preloader__track"><span id="preloaderBar"></span></div>
+    <span class="site-preloader__text" id="preloaderText">Loading 0%</span>
+  </div>
+</div>
+<noscript><style>.site-preloader{display:none!important}.is-loading{overflow:auto!important}</style></noscript>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <g id="i-arrow"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
   <g id="i-cal"><rect x="3.5" y="5" width="17" height="16" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g>

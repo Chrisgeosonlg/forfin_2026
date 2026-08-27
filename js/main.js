@@ -7,6 +7,52 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- image preloader ---------- */
+  const preloader = $("#sitePreloader");
+  const preloaderBar = $("#preloaderBar");
+  const preloaderText = $("#preloaderText");
+  const pageImages = $$("img");
+  let settledImages = 0;
+  let preloaderFinished = false;
+
+  const updatePreloader = () => {
+    const total = pageImages.length || 1;
+    const progress = Math.round((settledImages / total) * 100);
+    if (preloaderBar) preloaderBar.style.width = `${progress}%`;
+    if (preloaderText) preloaderText.textContent = `Loading ${progress}%`;
+  };
+
+  const finishPreloader = () => {
+    if (preloaderFinished) return;
+    preloaderFinished = true;
+    if (preloaderBar) preloaderBar.style.width = "100%";
+    if (preloaderText) preloaderText.textContent = "Ready";
+    window.setTimeout(() => {
+      preloader?.classList.add("is-ready");
+      document.documentElement.classList.remove("is-loading");
+      window.setTimeout(() => preloader?.remove(), reduceMotion ? 0 : 500);
+    }, reduceMotion ? 0 : 250);
+  };
+
+  if (!pageImages.length) {
+    finishPreloader();
+  } else {
+    const imageSettled = () => {
+      settledImages += 1;
+      updatePreloader();
+      if (settledImages >= pageImages.length) finishPreloader();
+    };
+    pageImages.forEach(img => {
+      img.loading = "eager";
+      if (img.complete) imageSettled();
+      else {
+        img.addEventListener("load", imageSettled, { once: true });
+        img.addEventListener("error", imageSettled, { once: true });
+      }
+    });
+    updatePreloader();
+  }
+
   /* ---------- sticky nav state ---------- */
   const nav = $("#nav");
   const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 40);
