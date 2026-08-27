@@ -8,9 +8,9 @@
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- per-image spiral loaders ---------- */
-  $$(".tile img, .plogo img, .strip__logo img, .partner-hero__plate img").forEach(img => {
+  $$(".gl-video img, .tile img, .plogo img, .strip__logo img, .partner-hero__plate img").forEach(img => {
     if (img.complete) return;
-    const target = img.closest(".tile, .plogo, .strip__logo, .partner-hero__plate");
+    const target = img.closest(".gl-video, .tile, .plogo, .strip__logo, .partner-hero__plate");
     if (!target) return;
     const spinner = document.createElement("span");
     spinner.className = "image-loader";
@@ -190,7 +190,7 @@
     const lbImg = $("#lbImg"), lbCap = $("#lbCap"), lbCount = $("#lbCount");
     let list = [], idx = 0;
 
-    const visibleTiles = () => $$(".tile").filter(t => !t.classList.contains("is-hidden") && t.offsetParent !== null);
+    const visibleTiles = () => $$(".tile:not(.tile--video)").filter(t => !t.classList.contains("is-hidden") && t.offsetParent !== null);
 
     const show = (i) => {
       if (!list.length) return;
@@ -220,7 +220,7 @@
     };
 
     document.addEventListener("click", (e) => {
-      const t = e.target.closest(".tile");
+      const t = e.target.closest(".tile:not(.tile--video)");
       if (t && lb.contains(t) === false) { e.preventDefault(); open(t); }
     });
     $("#lbClose").addEventListener("click", close);

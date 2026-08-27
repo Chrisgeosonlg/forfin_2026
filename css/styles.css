@@ -278,6 +278,17 @@ h1,h2,h3,h4,h5,.eyebrow,.btn,.nav__links a,.stat__n,.cd__n{font-family:"Montserr
 .gl-hero h1{font-family:"Montserrat";font-size:clamp(30px,4.6vw,50px);font-weight:800;line-height:1.06}
 .gl-hero p{max-width:620px;margin:18px auto 0;color:rgba(231,236,245,.82);font-size:16px}
 .gl-section{padding-top:48px}
+.gl-video-feature{max-width:880px;margin:0 auto 48px;text-align:center}
+.gl-video-feature .h2{margin:8px 0 22px}
+.gl-video{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;border-radius:22px;background:var(--navy);box-shadow:var(--shadow);border:1px solid var(--line)}
+.gl-video>img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease),opacity .3s ease}
+.gl-video__shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,17,47,.08),rgba(4,17,47,.68));transition:background .3s ease}
+.gl-video__play{position:absolute;left:50%;top:50%;width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;display:grid;place-items:center;background:var(--cyan);box-shadow:0 0 0 12px rgba(18,197,216,.18),0 12px 34px rgba(0,0,0,.25);transition:transform .3s var(--ease)}
+.gl-video__play span{width:0;height:0;margin-left:5px;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:16px solid var(--navy)}
+.gl-video__caption{position:absolute;left:26px;bottom:22px;color:#fff;font-family:"Montserrat";font-size:15px;font-weight:700}
+.gl-video:hover>img{transform:scale(1.035)}
+.gl-video:hover .gl-video__shade{background:linear-gradient(180deg,rgba(4,17,47,.02),rgba(4,17,47,.52))}
+.gl-video:hover .gl-video__play{transform:scale(1.08)}
 .gl-filter{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:32px}
 .gl-chip{font-family:"Montserrat";font-weight:600;font-size:13px;padding:9px 18px;border-radius:30px;cursor:pointer;
   background:#fff;border:1px solid var(--line);color:var(--muted);transition:.2s var(--ease)}
@@ -331,6 +342,11 @@ h1,h2,h3,h4,h5,.eyebrow,.btn,.nav__links a,.stat__n,.cd__n{font-family:"Montserr
 .moments{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:168px;gap:12px;grid-auto-flow:dense;margin-top:8px}
 .moments .tile--big{grid-column:span 2;grid-row:span 2}
 .moments .tile--wide{grid-column:span 2}
+.tile--video{display:block;text-decoration:none}
+.tile--video .gl-video__shade{background:linear-gradient(180deg,rgba(4,17,47,.06),rgba(4,17,47,.72))}
+.gl-video__play--tile{width:58px;height:58px;margin:-29px 0 0 -29px;box-shadow:0 0 0 9px rgba(18,197,216,.18),0 10px 28px rgba(0,0,0,.25)}
+.tile-video__caption{position:absolute;left:18px;right:18px;bottom:16px;display:flex;flex-direction:column;gap:4px}
+.tile--video:hover .gl-video__play--tile{transform:scale(1.08)}
 .moments-foot{text-align:center;margin-top:30px}
 
 @media (max-width:980px){
