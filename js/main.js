@@ -19,14 +19,14 @@
     const total = pageImages.length || 1;
     const progress = Math.round((settledImages / total) * 100);
     if (preloaderBar) preloaderBar.style.width = `${progress}%`;
-    if (preloaderText) preloaderText.textContent = `Loading ${progress}%`;
+    if (preloaderText) preloaderText.textContent = `${progress}%`;
   };
 
   const finishPreloader = () => {
     if (preloaderFinished) return;
     preloaderFinished = true;
     if (preloaderBar) preloaderBar.style.width = "100%";
-    if (preloaderText) preloaderText.textContent = "Ready";
+    if (preloaderText) preloaderText.textContent = "100%";
     window.setTimeout(() => {
       preloader?.classList.add("is-ready");
       document.documentElement.classList.remove("is-loading");
