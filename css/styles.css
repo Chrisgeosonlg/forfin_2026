@@ -196,7 +196,7 @@ h1,h2,h3,h4,h5,.eyebrow,.btn,.nav__links a,.stat__n,.cd__n{font-family:"Montserr
 .strip__logo img[src*="nutanix"],.plogo img[src*="nutanix"]{--logo-scale:.82}
 .strip__logo img[src*="defenix"],.plogo img[src*="defenix"]{--logo-scale:.95}
 .strip__logo img[src*="evad"],.plogo img[src*="evad"]{--logo-scale:1.15}
-.strip__logo img[src*="datapatrol"],.plogo img[src*="datapatrol"]{--logo-scale:1.9}
+.strip__logo img[src*="datapatrol"],.plogo img[src*="datapatrol"]{--logo-scale:1.55}
 .strip__logo img[src*="censys"],.plogo img[src*="censys"]{--logo-scale:1.35}
 .plogo--cta{flex-direction:column;gap:8px;background:var(--navy);color:#fff;font-family:"Montserrat";font-weight:700;font-size:15px;border-color:transparent}
 .plogo--cta .ico{width:18px;height:18px;stroke-width:2.2;color:var(--cyan)}
