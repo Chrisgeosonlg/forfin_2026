@@ -25,7 +25,7 @@ forfin-2026-website/
 │   ├── forfin-logo.png         # navy logo (light backgrounds)
 │   ├── forfin-logo-white.png   # white logo (dark nav / footer)
 │   ├── gallery/                # last-year event photos (photo-01.jpg … photo-12.jpg)
-│   └── sponsors/               # partner logos (fortinet, thales, cyberark, hpe, defenix, evad)
+│   └── sponsors/               # partner logos (fortinet, thales, idira, hpe, defenix, evad)
 └── README.md
 ```
 
