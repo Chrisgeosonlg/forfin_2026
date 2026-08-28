@@ -249,6 +249,7 @@ h1,h2,h3,h4,h5,.eyebrow,.btn,.nav__links a,.stat__n,.cd__n{font-family:"Montserr
 .ag-hero__meta span{display:inline-flex;align-items:center;gap:9px}
 .ag-hero__meta .ico{width:17px;height:17px;color:var(--cyan)}
 .ag-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+.ag-grid .ag-time{min-width:92px;font-size:13px}
 .ag-day__head{display:flex;align-items:center;gap:16px;margin-bottom:18px}
 .ag-day__n{font-family:"Montserrat";font-weight:800;font-size:34px;color:var(--cyan-deep);line-height:1}
 .ag-day__head h2{font-family:"Montserrat";font-size:20px;color:var(--navy);font-weight:800}
