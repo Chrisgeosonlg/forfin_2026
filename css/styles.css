@@ -101,11 +101,11 @@ h1,h2,h3,h4,h5,.eyebrow,.btn,.nav__links a,.stat__n,.cd__n{font-family:"Montserr
 .strip{background:var(--navy-deep);border-top:1px solid rgba(255,255,255,.06);padding:26px 0}
 .strip__inner{display:flex;align-items:center;gap:34px;flex-wrap:wrap;justify-content:center}
 .strip__label{font-family:"Montserrat";font-size:11px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:rgba(217,222,232,.5)}
-.strip__logos{display:grid;grid-template-columns:repeat(7,130px);gap:16px;justify-content:center}
-.strip__logo{width:130px;height:72px;display:flex;align-items:center;justify-content:center;padding:14px;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:9px;background:rgba(255,255,255,.05);transition:.25s var(--ease)}
+.strip__logos{display:grid;grid-template-columns:repeat(7,150px);gap:16px;justify-content:center}
+.strip__logo{width:150px;height:88px;display:flex;align-items:center;justify-content:center;padding:16px;overflow:hidden;border:1px solid rgba(255,255,255,.22);border-radius:10px;background:#fff;transition:.25s var(--ease)}
 .strip__logo:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.18)}
-.strip__logo img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}
-.strip__logo--strategic{grid-column:span 2;width:276px;height:88px;padding:10px 14px;background:#fff;border-color:rgba(255,255,255,.22)}
+.strip__logo img{display:block;width:100%;height:56px;object-fit:contain}
+.strip__logo--strategic{width:150px;height:88px;padding:16px;background:#fff;border-color:rgba(255,255,255,.22)}
 .strip__logo--strategic img{object-fit:contain}
 .strip__wordmark{font-family:"Montserrat",sans-serif;font-size:18px;font-weight:800;line-height:1;white-space:nowrap}
 .strip__wordmark--imperva{color:#ec632c;text-transform:lowercase}
@@ -343,7 +343,7 @@ h1,h2,h3,h4,h5,.eyebrow,.btn,.nav__links a,.stat__n,.cd__n{font-family:"Montserr
 }
 @media (max-width:760px){
   .strip__inner{gap:20px}
-  .strip__logos{width:100%;grid-template-columns:repeat(3,130px);justify-content:start;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+  .strip__logos{width:100%;grid-template-columns:repeat(3,150px);justify-content:start;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
   .nav__links{position:fixed;inset:0 0 0 auto;width:78%;max-width:320px;flex-direction:column;align-items:flex-start;gap:6px;background:#0A2563;padding:96px 28px 28px;transform:translateX(100%);transition:.35s var(--ease);box-shadow:-20px 0 60px rgba(0,0,0,.4)}
   .nav__links.is-open{transform:none}
   .nav__links a{color:#fff!important;font-size:17px;padding:10px 0;width:100%}
