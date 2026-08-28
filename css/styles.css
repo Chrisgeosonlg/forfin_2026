@@ -104,10 +104,10 @@ h1,h2,h3,h4,h5,.eyebrow,.btn,.nav__links a,.stat__n,.cd__n{font-family:"Montserr
 .strip__logos{display:grid;grid-template-columns:repeat(7,150px);gap:16px;justify-content:center}
 .strip__logo{width:150px;height:88px;display:flex;align-items:center;justify-content:center;padding:16px;overflow:hidden;border:1px solid rgba(255,255,255,.22);border-radius:10px;background:#fff;transition:.25s var(--ease)}
 .strip__logo:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.18)}
-.strip__logo img{display:block;width:100%;height:56px;object-fit:contain}
+.strip__logo img{display:block;width:100%;height:56px;object-fit:contain;transform:scale(var(--logo-scale,1));transform-origin:center}
 .strip__logo--strategic{width:150px;height:88px;padding:16px;background:#fff;border-color:rgba(255,255,255,.22)}
 .strip__logo--strategic img{object-fit:contain}
-.strip__wordmark{font-family:"Montserrat",sans-serif;font-size:18px;font-weight:800;line-height:1;white-space:nowrap}
+.strip__wordmark{font-family:"Montserrat",sans-serif;font-size:22px;font-weight:800;line-height:1;white-space:nowrap}
 .strip__wordmark--imperva{color:#ec632c;text-transform:lowercase}
 
 /* ---------- about ---------- */
@@ -181,11 +181,22 @@ h1,h2,h3,h4,h5,.eyebrow,.btn,.nav__links a,.stat__n,.cd__n{font-family:"Montserr
 
 /* ---------- partners ---------- */
 .partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.plogo{background:#fff;border:1px solid var(--line);border-radius:16px;height:130px;display:flex;align-items:center;justify-content:center;padding:28px;transition:.25s var(--ease)}
-.plogo img{display:block;width:100%;height:64px;object-fit:contain}
+.plogo{background:#fff;border:1px solid var(--line);border-radius:16px;height:130px;display:flex;align-items:center;justify-content:center;padding:28px;overflow:hidden;transition:.25s var(--ease)}
+.plogo img{display:block;width:100%;height:64px;object-fit:contain;transform:scale(var(--logo-scale,1));transform-origin:center}
 .plogo:hover{box-shadow:var(--shadow-sm);transform:translateY(-4px)}
-.wm{display:flex;width:100%;height:64px;align-items:center;justify-content:center;white-space:nowrap;font-family:"Montserrat",sans-serif;font-size:28px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.wm{display:flex;width:100%;height:64px;align-items:center;justify-content:center;white-space:nowrap;font-family:"Montserrat",sans-serif;font-size:34px;font-weight:800;letter-spacing:-.04em;line-height:1}
 .wm--imperva{color:#ec632c;text-transform:lowercase;font-weight:700}
+.strip__logo img[src*="trinexia"],.plogo img[src*="trinexia"]{--logo-scale:1.4}
+.strip__logo img[src*="thales"],.plogo img[src*="thales"]{--logo-scale:.82}
+.strip__logo img[src*="idira"],.plogo img[src*="idira"]{--logo-scale:1.15}
+.strip__logo img[src*="solarwinds"],.plogo img[src*="solarwinds"]{--logo-scale:1.4}
+.strip__logo img[src*="fortinet"],.plogo img[src*="fortinet"]{--logo-scale:1.4}
+.strip__logo img[src*="kaspersky"],.plogo img[src*="kaspersky"]{--logo-scale:1.5}
+.strip__logo img[src*="nutanix"],.plogo img[src*="nutanix"]{--logo-scale:.82}
+.strip__logo img[src*="defenix"],.plogo img[src*="defenix"]{--logo-scale:.95}
+.strip__logo img[src*="evad"],.plogo img[src*="evad"]{--logo-scale:1.15}
+.strip__logo img[src*="datapatrol"],.plogo img[src*="datapatrol"]{--logo-scale:1.9}
+.strip__logo img[src*="censys"],.plogo img[src*="censys"]{--logo-scale:1.35}
 .plogo--cta{flex-direction:column;gap:8px;background:var(--navy);color:#fff;font-family:"Montserrat";font-weight:700;font-size:15px;border-color:transparent}
 .plogo--cta .ico{width:18px;height:18px;stroke-width:2.2;color:var(--cyan)}
 .plogo--cta:hover{background:var(--navy-2)}
