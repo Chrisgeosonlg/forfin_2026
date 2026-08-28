@@ -70,6 +70,11 @@
 
   /* ---------- reveal on scroll ---------- */
   const revealEls = $$(".reveal");
+  revealEls.forEach(el => {
+    const siblings = [...el.parentElement.children].filter(child => child.classList.contains("reveal"));
+    const index = siblings.indexOf(el);
+    if (siblings.length > 1 && index > 0) el.style.setProperty("--reveal-delay", `${Math.min(index * 70, 280)}ms`);
+  });
   if ("IntersectionObserver" in window && !reduceMotion) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
