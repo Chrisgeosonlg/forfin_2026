@@ -50,8 +50,9 @@
       <a href="#speakers">Speakers</a>
       <a href="#partners">Partners</a>
       <a href="#venue">Venue</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
   </div>
 </header>
 
@@ -180,33 +181,6 @@
   </div>
 </section>
 
-<!-- ===== MOMENTS / LOOK BACK 2025 ===== -->
-<section class="section" id="moments">
-  <div class="container">
-    <div class="section__head reveal">
-      <span class="eyebrow">Look back · FORFIN 2025</span>
-      <h2 class="h2">Moments from the first edition.</h2>
-      <p class="section__sub">Keynotes, panels, hands-on workshops and ocean-side networking from the inaugural summit.</p>
-    </div>
-    <div class="moments reveal">
-      <figure class="tile tile--big" data-cat="keynote"><img src="assets/gallery/photo-01.jpg" alt="Opening keynote" loading="lazy"><figcaption><span class="tile__cat">Keynote</span><span class="tile__cap">Opening keynote</span></figcaption><span class="tile__z"><svg class="ico"><use href="#i-zoom"/></svg></span></figure>
-      <figure class="tile" data-cat="panel"><img src="assets/gallery/photo-03.jpg" alt="Expert panel" loading="lazy"><figcaption><span class="tile__cat">Panel</span><span class="tile__cap">Expert panel</span></figcaption><span class="tile__z"><svg class="ico"><use href="#i-zoom"/></svg></span></figure>
-      <figure class="tile tile--tall" data-cat="workshop"><img src="assets/gallery/photo-02.jpg" alt="Breakout session" loading="lazy"><figcaption><span class="tile__cat">Breakout</span><span class="tile__cap">Breakout session</span></figcaption><span class="tile__z"><svg class="ico"><use href="#i-zoom"/></svg></span></figure>
-      <figure class="tile tile--wide" data-cat="venue"><img src="assets/gallery/photo-04.jpg" alt="White Sands venue" loading="lazy"><figcaption><span class="tile__cat">Venue</span><span class="tile__cap">White Sands Resort &amp; Conference Centre</span></figcaption><span class="tile__z"><svg class="ico"><use href="#i-zoom"/></svg></span></figure>
-      <figure class="tile" data-cat="workshop"><img src="assets/gallery/photo-05.jpg" alt="Hands-on workshop" loading="lazy"><figcaption><span class="tile__cat">Workshop</span><span class="tile__cap">Hands-on workshop</span></figcaption><span class="tile__z"><svg class="ico"><use href="#i-zoom"/></svg></span></figure>
-      <a class="tile tile--video" href="https://youtu.be/LXhusWkZo80" target="_blank" rel="noopener" aria-label="Play FORFIN 1st Edition Highlights video">
-        <img src="assets/gallery/photo-01.jpg" alt="FORFIN 1st Edition Highlights video thumbnail" loading="lazy">
-        <span class="gl-video__shade"></span>
-        <span class="gl-video__play gl-video__play--tile" aria-hidden="true"><span></span></span>
-        <span class="tile-video__caption"><span class="tile__cat">Video</span><span class="tile__cap">1<sup>st</sup> Edition Highlights</span></span>
-      </a>
-    </div>
-    <div class="moments-foot reveal">
-      <a href="gallery.html" class="btn btn--primary">View the full gallery <svg class="ico"><use href="#i-arrow"/></svg></a>
-    </div>
-  </div>
-</section>
-
 <!-- ===== AGENDA ===== -->
 <section class="section" id="agenda">
   <div class="container">
@@ -256,12 +230,14 @@
       <p class="section__sub">Our 2026 speaker line-up is being finalised. Check back soon for updates.</p>
     </div>
     <div class="grid-3 speakers reveal">
-      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-01.png" alt="Speaker portrait 1" loading="lazy"><h4>To be announced</h4><span>Speaker</span></div>
-      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-02.png" alt="Speaker portrait 2" loading="lazy"><h4>To be announced</h4><span>Speaker</span></div>
-      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-03.png" alt="Speaker portrait 3" loading="lazy"><h4>To be announced</h4><span>Speaker</span></div>
-      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-04.png" alt="Speaker portrait 4" loading="lazy"><h4>To be announced</h4><span>Speaker</span></div>
-      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-05.png" alt="Speaker portrait 5" loading="lazy"><h4>To be announced</h4><span>Speaker</span></div>
-      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-06.png" alt="Speaker portrait 6" loading="lazy"><h4>To be announced</h4><span>Speaker</span></div>
+      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-01.png" alt="Philip Van Dalen" loading="lazy"><h4>Philip Van Dalen</h4><span>Thales</span></div>
+      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-04.png" alt="Lynel Dsouza" loading="lazy"><h4>Lynel Dsouza</h4><span>Thales</span></div>
+      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-03.png" alt="Mervyn Yan" loading="lazy"><h4>Mervyn Yan</h4><span>IDIRA</span></div>
+      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-06.png" alt="Filipe Galvao" loading="lazy"><h4>Filipe Galvao</h4><span>IDIRA</span></div>
+      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-07.png" alt="Imran Chaudhrey" loading="lazy"><h4>Imran Chaudhrey</h4><span>Fortinet</span></div>
+      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-08.png" alt="Nimira Ayub" loading="lazy"><h4>Nimira Ayub</h4><span>Kaspersky</span></div>
+      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-02.png" alt="Nawaz Bagha" loading="lazy"><h4>Nawaz Bagha</h4><span>Nutanix</span></div>
+      <div class="spk"><img class="spk__photo" src="assets/speakers/speaker-05.png" alt="Loay Hussein" loading="lazy"><h4>Loay Hussein</h4><span>DataPatrol</span></div>
     </div>
   </div>
 </section>
@@ -288,6 +264,33 @@
       <div class="plogo"><img src="assets/sponsors/evad.png" alt="EVAD"></div>
       <div class="plogo"><img src="assets/sponsors/datapatrol.png" alt="DataPatrol"></div>
       <div class="plogo"><img src="assets/sponsors/censys.png" alt="Censys"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MOMENTS / LOOK BACK 2025 ===== -->
+<section class="section" id="moments">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="eyebrow">Look back · FORFIN 2025</span>
+      <h2 class="h2">Moments from the first edition.</h2>
+      <p class="section__sub">Keynotes, panels, hands-on workshops and ocean-side networking from the inaugural summit.</p>
+    </div>
+    <div class="moments reveal">
+      <figure class="tile" data-cat="keynote"><img src="assets/gallery/photo-01.jpg" alt="Opening keynote" loading="lazy"><figcaption><span class="tile__cat">Keynote</span><span class="tile__cap">Opening keynote</span></figcaption><span class="tile__z"><svg class="ico"><use href="#i-zoom"/></svg></span></figure>
+      <figure class="tile" data-cat="panel"><img src="assets/gallery/photo-03.jpg" alt="Expert panel" loading="lazy"><figcaption><span class="tile__cat">Panel</span><span class="tile__cap">Expert panel</span></figcaption><span class="tile__z"><svg class="ico"><use href="#i-zoom"/></svg></span></figure>
+      <figure class="tile" data-cat="workshop"><img src="assets/gallery/photo-02.jpg" alt="Breakout session" loading="lazy"><figcaption><span class="tile__cat">Breakout</span><span class="tile__cap">Breakout session</span></figcaption><span class="tile__z"><svg class="ico"><use href="#i-zoom"/></svg></span></figure>
+      <figure class="tile" data-cat="venue"><img src="assets/gallery/photo-04.jpg" alt="White Sands venue" loading="lazy"><figcaption><span class="tile__cat">Venue</span><span class="tile__cap">White Sands Resort &amp; Conference Centre</span></figcaption><span class="tile__z"><svg class="ico"><use href="#i-zoom"/></svg></span></figure>
+      <figure class="tile" data-cat="workshop"><img src="assets/gallery/photo-05.jpg" alt="Hands-on workshop" loading="lazy"><figcaption><span class="tile__cat">Workshop</span><span class="tile__cap">Hands-on workshop</span></figcaption><span class="tile__z"><svg class="ico"><use href="#i-zoom"/></svg></span></figure>
+      <a class="tile tile--video" href="https://youtu.be/LXhusWkZo80" target="_blank" rel="noopener" aria-label="Play FORFIN 1st Edition Highlights video">
+        <img src="assets/gallery/photo-01.jpg" alt="FORFIN 1st Edition Highlights video thumbnail" loading="lazy">
+        <span class="gl-video__shade"></span>
+        <span class="gl-video__play gl-video__play--tile" aria-hidden="true"><span></span></span>
+        <span class="tile-video__caption"><span class="tile__cat">Video</span><span class="tile__cap">1<sup>st</sup> Edition Highlights</span></span>
+      </a>
+    </div>
+    <div class="moments-foot reveal">
+      <a href="gallery.html" class="btn btn--primary">View the full gallery <svg class="ico"><use href="#i-arrow"/></svg></a>
     </div>
   </div>
 </section>
@@ -348,6 +351,7 @@
       <a href="#agenda">Agenda</a>
       <a href="#partners">Partners</a>
       <a href="#venue">Venue</a>
+      <a href="contact.html">Contact us</a>
     </div>
     <div class="footer__col">
       <h5>Contact</h5>

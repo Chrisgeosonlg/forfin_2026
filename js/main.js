@@ -39,10 +39,132 @@
   burger.addEventListener("click", () => {
     links.classList.toggle("is-open");
     burger.classList.toggle("is-open");
+    burger.setAttribute("aria-expanded", links.classList.contains("is-open"));
   });
   $$("#navLinks a").forEach(a =>
-    a.addEventListener("click", () => links.classList.remove("is-open"))
+    a.addEventListener("click", () => {
+      links.classList.remove("is-open");
+      burger.classList.remove("is-open");
+      burger.setAttribute("aria-expanded", "false");
+    })
   );
+
+  /* ---------- FAQ chat + WhatsApp handoff ---------- */
+  const chat = document.createElement("aside");
+  chat.className = "faq-chat";
+  chat.innerHTML = `
+    <button class="faq-chat__toggle" type="button" aria-label="Open FORFIN help" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H10l-5 3v-3a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2Z"/><path d="M8 10h8M8 13.5h5"/></svg>
+      <span>Ask FORFIN</span>
+    </button>
+    <section class="faq-chat__panel" aria-label="FORFIN frequently asked questions" aria-hidden="true">
+      <header class="faq-chat__head"><div><strong>FORFIN Help</strong><small>Quick event answers</small></div><button type="button" class="faq-chat__close" aria-label="Close help">×</button></header>
+      <div class="faq-chat__body" aria-live="polite">
+        <div class="faq-msg faq-msg--bot">Hello! Ask me about FORFIN 2026, or choose a common question below.</div>
+        <div class="faq-chat__quick">
+          <button type="button" data-question="When and where is FORFIN 2026?">Date &amp; venue</button>
+          <button type="button" data-question="How can I attend?">Attendance</button>
+          <button type="button" data-question="Where can I see the agenda?">Agenda</button>
+          <button type="button" data-question="Who are the speakers?">Speakers</button>
+        </div>
+      </div>
+      <form class="faq-chat__form">
+        <label class="sr-only" for="faqQuestion">Ask a question</label>
+        <input id="faqQuestion" type="text" placeholder="Type your question…" autocomplete="off" required>
+        <button type="submit" aria-label="Send question">➜</button>
+      </form>
+    </section>`;
+  document.body.appendChild(chat);
+
+  const chatToggle = $(".faq-chat__toggle", chat);
+  const chatPanel = $(".faq-chat__panel", chat);
+  const chatBody = $(".faq-chat__body", chat);
+  const chatInput = $("#faqQuestion", chat);
+  const setChatOpen = open => {
+    chat.classList.toggle("is-open", open);
+    chatToggle.setAttribute("aria-expanded", String(open));
+    chatPanel.setAttribute("aria-hidden", String(!open));
+    if (open) window.setTimeout(() => chatInput.focus(), 200);
+  };
+  chatToggle.addEventListener("click", () => setChatOpen(!chat.classList.contains("is-open")));
+  $(".faq-chat__close", chat).addEventListener("click", () => setChatOpen(false));
+
+  const faqAnswer = question => {
+    const q = question.toLowerCase();
+    const escalate = "This requires confirmation from the FORFIN organizing team. Please continue on WhatsApp with your full name, organization, email address, mobile number and question.";
+    if (/emergency|urgent|medical/.test(q)) return "For event-day urgent assistance, visit the FORFIN registration or information desk at White Sands Hotel, or speak to the nearest FORFIN staff member immediately.";
+    if (/complaint|dispute|sponsorship price|sponsorship cost|sponsorship package|delegate limit|how many delegates|registration deadline|closing date|airport transfer|start time|finish time|registration time|what time|check-in time|checkout time|check-out time|certificate|giveaway|detailed menu|visa requirement|my registration|my invitation|my accommodation|registration status|accommodation status/.test(q)) return escalate;
+    if (/agenda|programme|program|schedule|session/.test(q)) return 'You can view the programme in the <a href="index.html#agenda">Agenda section</a>.';
+    if (/when|date|time|where|venue|location/.test(q)) return "FORFIN 2026 takes place on 1st and 2nd October 2026 at White Sands Resort & Conference Centre, Jangwani Beach, Dar es Salaam.";
+    if (/what is forfin|about forfin/.test(q)) return "FORFIN 2026 is an invitation-only executive technology forum organized by Computer Centre Tanzania Ltd for leaders in finance, government and technology.";
+    if (/what does forfin|forfin mean|stand for/.test(q)) return "FORFIN stands for Fortifying Finance Forum.";
+    if (/first edition|second edition|which edition/.test(q)) return "FORFIN 2026 is the second edition. The first edition was held in 2025.";
+    if (/theme/.test(q)) return "The FORFIN 2026 theme is “AI-Driven Cyber Resilience for the Digital Future.”";
+    if (/purpose|objective|why forfin/.test(q)) return "The forum explores how AI, cybersecurity and modern technology can strengthen resilience, protect information, prevent fraud and support secure digital transformation.";
+    if (/virtual|online|physical|in.person/.test(q)) return "FORFIN 2026 is an in-person event lasting two days.";
+    if (/who should attend|audience|eligible|eligibility/.test(q)) return "FORFIN is intended for senior leaders in banking, financial services, insurance, microfinance, fintech, government and regulatory institutions.";
+    if (/student/.test(q)) return "The forum is primarily for senior professionals. Students may attend only with a specific invitation or organizer approval.";
+    if (/colleague|guest|bring someone/.test(q)) return "You may recommend a colleague, but they must register separately and receive confirmation. Unregistered guests cannot be guaranteed entry.";
+    if (/vendor/.test(q)) return "Only participating technology partners, invited vendors and approved representatives may attend.";
+    if (/free|complimentary|registration fee|attendance fee|cost|price|payment/.test(q)) return "Attendance is complimentary for invited and confirmed delegates unless the organizers communicate otherwise.";
+    if (/how.*register|registration link/.test(q)) return "Use the official registration link included in your invitation. Every submission is reviewed and does not guarantee attendance.";
+    if (/confirm|confirmation/.test(q)) return "Confirmed delegates will receive an email, phone call or WhatsApp message from the organizing team. If you registered but received nothing, check your spam folder and contact the team.";
+    if (/transfer.*invitation|replace.*delegate/.test(q)) return "Invitations cannot be transferred without approval. Contact the organizing team with the proposed replacement delegate’s details.";
+    if (/cannot attend|can.t attend|cancel attendance/.test(q)) return "Notify the organizing team as early as possible so registration, catering and accommodation arrangements can be updated.";
+    if (/attend|register|registration|invite|ticket|entry/.test(q)) return "FORFIN 2026 is invitation-only. Attendance requires registration and confirmation by the organizing team.";
+    if (/what.*bring|bring.*event/.test(q)) return "Bring valid identification, your invitation or confirmation message, and business cards if available.";
+    if (/badge|lanyard/.test(q)) return "Confirmed delegates will receive an event badge or lanyard and should wear it throughout the forum.";
+    if (/check.?in|registration desk/.test(q)) return "Check-in will be at the designated FORFIN registration desk at White Sands Hotel. Signs and event staff will provide directions.";
+    if (/topic|discuss|content/.test(q)) return "Topics include AI and cybersecurity, cyber resilience, incident response, cloud and data security, fraud prevention, identity, compliance, governance and resilient infrastructure.";
+    if (/format|keynote|panel|breakout|demonstration|demo|q&a|questions/.test(q)) return "The programme includes keynotes, executive presentations, demonstrations, panels, breakout sessions, Q&A and networking activities.";
+    if (/slide|presentation material|materials shared/.test(q)) return "Presentation materials may be shared after the event where the relevant speakers and partners grant permission.";
+    if (/speaker|presenter|panelist/.test(q)) return 'Confirmed experts are listed in the <a href="index.html#speakers">Speakers section</a>.';
+    if (/meeting.*presenter|meeting.*partner|request.*meeting/.test(q)) return "You may request a meeting through a Computer Centre Tanzania representative during the event or through the official contact channel.";
+    if (/partner|sponsor|company.*present/.test(q)) return 'Participating organisations are shown in the <a href="index.html#partners">Partners section</a>. Speaking and partnership opportunities require organizer approval.';
+    if (/accommodation|hotel|room|extra night|special rate/.test(q)) return "One night may be provided to selected invited and confirmed delegates. Check your invitation or confirmation; extra nights and personal expenses are normally paid by the attendee.";
+    if (/transport|travel|parking|international delegate|visa support/.test(q)) return "Transport is not automatically included. Parking is expected subject to hotel capacity. Confirmed international delegates may request a visa-support letter, but remain responsible for travel and entry requirements.";
+    if (/meal|food|refreshment|dinner|dietary/.test(q)) return "Meals and refreshments are provided according to the final programme, including a planned networking dinner for eligible confirmed attendees. Share dietary requirements early.";
+    if (/dress|attire|wear/.test(q)) return "Business formal or smart business attire is recommended.";
+    if (/laptop|charger|charging|power bank/.test(q)) return "A laptop is not required unless specifically requested. Bring your charger or power bank and arrive with devices charged.";
+    if (/wi.?fi|internet/.test(q)) return "Internet access is expected at the venue. Connection details will be provided where applicable.";
+    if (/networking|promote.*business|exhibition|booth/.test(q)) return "Executive networking is a core part of FORFIN. Unauthorized selling or promotional displays may be restricted; branded areas are arranged by the organizers.";
+    if (/photo|video|record|media/.test(q)) return "Official photos and videos may be used for event communication. Tell the registration desk if you prefer not to appear. Recording sessions may require permission.";
+    if (/privacy|personal data|information used|details shared|confidential/.test(q)) return "Registration data is used for event delivery and approved follow-up. Follow confidentiality instructions, and never share passwords, card details or unnecessary sensitive information.";
+    if (/accessible|accessibility|special seating|personal assistant/.test(q)) return "Notify the organizing team early about accessibility, seating or assistant requirements so approval and arrangements can be coordinated.";
+    if (/latest information|latest update|genuine|verify.*message/.test(q)) return "Use official FORFIN invitations, emails, WhatsApp messages, the event website or Computer Centre Tanzania communication. Verify uncertain messages before sharing information.";
+    if (/speak.*person|human|organizing team|organiser|organizer/.test(q)) return escalate;
+    if (/contact|email|phone|call/.test(q)) return 'Email <a href="mailto:forfin@cctz.co.tz">forfin@cctz.co.tz</a>, use our <a href="contact.html">contact page</a>, or continue on WhatsApp.';
+    return null;
+  };
+  const addChatMessage = (content, type, asHtml = false) => {
+    const message = document.createElement("div");
+    message.className = `faq-msg faq-msg--${type}`;
+    if (asHtml) message.innerHTML = content; else message.textContent = content;
+    chatBody.appendChild(message);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  };
+  const askFaq = question => {
+    const clean = question.trim();
+    if (!clean) return;
+    addChatMessage(clean, "user");
+    const answer = faqAnswer(clean);
+    if (answer) {
+      addChatMessage(answer, "bot", true);
+      if (/requires confirmation|organizing team/.test(answer)) {
+        const whatsapp = `https://wa.me/255655007491?text=${encodeURIComponent("Hello FORFIN team, I need help with this enquiry:\n\n" + clean)}`;
+        addChatMessage(`<a class="faq-chat__whatsapp" href="${whatsapp}" target="_blank" rel="noopener">Continue on WhatsApp</a>`, "bot", true);
+      }
+    } else {
+      const whatsapp = `https://wa.me/255655007491?text=${encodeURIComponent("Hello FORFIN team, I need help with this enquiry:\n\n" + clean)}`;
+      addChatMessage(`That question needs help from our team. <a class="faq-chat__whatsapp" href="${whatsapp}" target="_blank" rel="noopener">Continue on WhatsApp</a>`, "bot", true);
+    }
+  };
+  $(".faq-chat__form", chat).addEventListener("submit", event => {
+    event.preventDefault();
+    askFaq(chatInput.value);
+    chatInput.value = "";
+  });
+  $$("[data-question]", chat).forEach(button => button.addEventListener("click", () => askFaq(button.dataset.question)));
 
   /* ---------- countdown ---------- */
   const target = new Date("2026-10-01T09:00:00+03:00").getTime();

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Us — FORFIN 2026</title>
+<meta name="description" content="Contact the FORFIN 2026 team with event, attendance, partnership or media enquiries.">
+<link rel="icon" type="image/png" sizes="256x256" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="i-mail"><rect x="3.5" y="5.5" width="17" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></g>
+  <g id="i-phone"><path d="M5 4h3.5l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5V19a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 1-2Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></g>
+  <g id="i-arrow"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+</defs></svg>
+
+<header class="nav" id="nav">
+  <div class="nav__inner container">
+    <a href="index.html" class="nav__brand"><img src="assets/forfin-logo-white.png" alt="FORFIN 2026"></a>
+    <nav class="nav__links" id="navLinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#tracks">Tracks</a>
+      <a href="agenda.html">Agenda</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="index.html#speakers">Speakers</a>
+      <a href="index.html#partners">Partners</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="contact-hero">
+  <div class="container">
+    <span class="eyebrow on-dark">Contact FORFIN</span>
+    <h1>How can we help?</h1>
+    <p>Send us a short enquiry about attendance, partnerships, speaking or the event.</p>
+  </div>
+</section>
+
+<main class="section contact-section">
+  <div class="container contact-layout">
+    <div class="contact-copy reveal">
+      <span class="eyebrow">Get in touch</span>
+      <h2 class="h2">Speak with the FORFIN team.</h2>
+      <p>Complete the form and your email application will open with the enquiry ready to send.</p>
+      <a class="contact-direct" href="mailto:forfin@cctz.co.tz"><svg class="ico"><use href="#i-mail"/></svg><span><small>Email us</small>forfin@cctz.co.tz</span></a>
+      <a class="contact-direct" href="tel:+255672907560"><svg class="ico"><use href="#i-phone"/></svg><span><small>Call us</small>+255 672 907 560</span></a>
+    </div>
+
+    <form class="contact-form reveal" id="contactForm">
+      <div class="contact-field">
+        <label for="contactName">Full name</label>
+        <input id="contactName" name="name" type="text" autocomplete="name" required>
+      </div>
+      <div class="contact-field">
+        <label for="contactEmail">Email address</label>
+        <input id="contactEmail" name="email" type="email" autocomplete="email" required>
+      </div>
+      <fieldset class="contact-field contact-choices">
+        <legend>Enquiry type</legend>
+        <div class="contact-choice-grid">
+          <label><input type="radio" name="subject" value="Attendance enquiry" required><span>Attendance</span></label>
+          <label><input type="radio" name="subject" value="Partnership enquiry"><span>Partnership</span></label>
+          <label><input type="radio" name="subject" value="Speaking enquiry"><span>Speaking</span></label>
+          <label><input type="radio" name="subject" value="Media enquiry"><span>Media</span></label>
+          <label><input type="radio" name="subject" value="General enquiry"><span>General</span></label>
+        </div>
+      </fieldset>
+      <div class="contact-field">
+        <label for="contactMessage">Message</label>
+        <textarea id="contactMessage" name="message" rows="5" required></textarea>
+      </div>
+      <button class="btn btn--primary contact-submit" type="submit">Prepare email <svg class="ico"><use href="#i-arrow"/></svg></button>
+      <p class="contact-note">Your email app will open. Review the message there, then press Send.</p>
+    </form>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand"><img src="assets/forfin-logo-white.png" alt="FORFIN 2026"><p>Fortifying Finance · AI-Driven Cyber Resilience for the Digital Future. An event by Computer Centre Tanzania.</p></div>
+    <div class="footer__col"><h5>Event</h5><a href="index.html#about">About FORFIN</a><a href="agenda.html">Agenda</a><a href="gallery.html">Gallery</a><a href="index.html#partners">Partners</a></div>
+    <div class="footer__col"><h5>Contact</h5><a href="mailto:forfin@cctz.co.tz"><svg class="ico"><use href="#i-mail"/></svg> forfin@cctz.co.tz</a><a href="tel:+255672907560"><svg class="ico"><use href="#i-phone"/></svg> +255 672 907 560</a></div>
+  </div>
+  <div class="footer__bar container"><span>© 2026 FORFIN · Computer Centre Tanzania.</span><span>#FORFIN2026</span></div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+document.getElementById("contactForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+  const data = new FormData(this);
+  const subject = "FORFIN 2026 — " + data.get("subject");
+  const body = "Name: " + data.get("name") + "\nEmail: " + data.get("email") + "\n\nMessage:\n" + data.get("message");
+  window.location.href = "mailto:forfin@cctz.co.tz?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+});
+</script>
+</body>
+</html>
