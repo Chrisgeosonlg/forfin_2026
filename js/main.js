@@ -89,8 +89,57 @@
   chatToggle.addEventListener("click", () => setChatOpen(!chat.classList.contains("is-open")));
   $(".faq-chat__close", chat).addEventListener("click", () => setChatOpen(false));
 
+  const faqVocabulary = [
+    "accommodation", "accessibility", "agenda", "attend", "attendance", "badge",
+    "certificate", "colleague", "complimentary", "confirmation", "contact", "deadline",
+    "dietary", "dress", "emergency", "exhibition", "invitation", "networking", "organizer",
+    "parking", "partner", "programme", "register", "registration", "schedule", "speaker",
+    "sponsorship", "transport", "venue", "virtual", "whatsapp"
+  ];
+  const editDistance = (a, b) => {
+    const row = Array.from({ length: b.length + 1 }, (_, index) => index);
+    for (let i = 1; i <= a.length; i += 1) {
+      let previous = row[0];
+      row[0] = i;
+      for (let j = 1; j <= b.length; j += 1) {
+        const saved = row[j];
+        row[j] = Math.min(row[j] + 1, row[j - 1] + 1, previous + (a[i - 1] === b[j - 1] ? 0 : 1));
+        previous = saved;
+      }
+    }
+    return row[b.length];
+  };
+  const normalizeFaqQuestion = question => {
+    let normalized = question.toLowerCase().normalize("NFKD").replace(/[’']/g, "").replace(/[^a-z0-9&]+/g, " ").trim();
+    normalized = normalized.split(" ").map(word => {
+      if (word.length < 5 || faqVocabulary.includes(word)) return word;
+      return faqVocabulary.find(candidate => Math.abs(candidate.length - word.length) <= 1 && editDistance(word, candidate) <= 1) || word;
+    }).join(" ");
+    const aliases = [
+      [/\b(who can come|who can join|who is it for|target audience)\b/g, "who should attend audience"],
+      [/\b(sign ?up|enrol|enroll|apply|join|participate)\b/g, "register attend"],
+      [/\b(coworker|co worker|workmate|team ?mate|plus one)\b/g, "colleague"],
+      [/\b(where is it held|where will it be|place of the event|event place)\b/g, "venue location"],
+      [/\b(when is it held|which day|what day|event day)\b/g, "event date"],
+      [/\b(run of show|timetable|line ?up)\b/g, "agenda schedule"],
+      [/\b(host|presenting|talking at the event)\b/g, "speaker presenter"],
+      [/\b(how much|is there a charge|do i have to pay|paid event)\b/g, "cost payment"],
+      [/\b(stay|lodging|sleeping arrangements?)\b/g, "accommodation hotel"],
+      [/\b(get there|ride|shuttle|car park)\b/g, "transport parking"],
+      [/\b(eat|lunch|breakfast|snacks?|drinks?)\b/g, "meal food"],
+      [/\b(clothes|clothing|outfit)\b/g, "dress attire"],
+      [/\b(subjects?|what will be covered|what will i learn)\b/g, "topics content"],
+      [/\b(what is this event|tell me about (this|the) event|what is the event about)\b/g, "what is forfin"],
+      [/\b(internet connection|wireless internet)\b/g, "wifi internet"],
+      [/\b(wheelchair|disabled|disability)\b/g, "accessibility"],
+      [/\b(real|legit|authentic|scam)\b/g, "genuine verify message"],
+      [/\b(talk to someone|customer support|need help)\b/g, "speak person organizing team"]
+    ];
+    aliases.forEach(([pattern, replacement]) => { normalized = normalized.replace(pattern, replacement); });
+    return normalized;
+  };
   const faqAnswer = question => {
-    const q = question.toLowerCase();
+    const q = normalizeFaqQuestion(question);
     const escalate = "This requires confirmation from the FORFIN organizing team. Please continue on WhatsApp with your full name, organization, email address, mobile number and question.";
     if (/emergency|urgent|medical/.test(q)) return "For event-day urgent assistance, visit the FORFIN registration or information desk at White Sands Hotel, or speak to the nearest FORFIN staff member immediately.";
     if (/complaint|dispute|sponsorship price|sponsorship cost|sponsorship package|delegate limit|how many delegates|registration deadline|closing date|airport transfer|start time|finish time|registration time|what time|check-in time|checkout time|check-out time|certificate|giveaway|detailed menu|visa requirement|my registration|my invitation|my accommodation|registration status|accommodation status/.test(q)) return escalate;
