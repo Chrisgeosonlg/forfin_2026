@@ -418,5 +418,26 @@
     }, { passive: true });
   }
 
+  /* ---------- privacy consent ---------- */
+  const consentKey = "forfin-privacy-consent";
+  let savedConsent = null;
+  try { savedConsent = localStorage.getItem(consentKey); } catch (_) {}
+  if (!savedConsent) {
+    const banner = document.createElement("section");
+    banner.className = "consent-banner";
+    banner.setAttribute("role", "dialog");
+    banner.setAttribute("aria-label", "Privacy choices");
+    banner.setAttribute("aria-live", "polite");
+    banner.innerHTML = '<div class="consent-banner__inner"><div class="consent-banner__copy"><strong>Your privacy choices</strong><p>We use essential browser storage to remember your choice. We do not currently use analytics or advertising cookies. <a href="privacy.html">Read our Privacy Policy</a>.</p></div><div class="consent-banner__actions"><button class="consent-btn consent-btn--secondary" type="button" data-consent="essential">Essential only</button><button class="consent-btn consent-btn--primary" type="button" data-consent="accepted">Accept</button></div></div>';
+    document.body.appendChild(banner);
+    banner.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-consent]");
+      if (!button) return;
+      try { localStorage.setItem(consentKey, button.dataset.consent); } catch (_) {}
+      banner.classList.add("is-closing");
+      window.setTimeout(() => banner.remove(), 260);
+    });
+  }
+
   /* ---------- footer year ---------- */
 })();
